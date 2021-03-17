@@ -22,7 +22,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="HCm-Pt-4KU">
                                 <rect key="frame" x="37.5" y="115" width="300" height="140"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username or email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="20i-2F-DtF">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="20i-2F-DtF">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="NpQ-o0-fr1"/>
@@ -96,8 +96,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="emailTxt" destination="20i-2F-DtF" id="Ivd-Um-wfi"/>
-                        <outlet property="passwordTxt" destination="KGH-gT-G33" id="iu1-q5-G1N"/>
+                        <outlet property="emailTxt" destination="20i-2F-DtF" id="mz1-KS-2MF"/>
+                        <outlet property="passwordTxt" destination="KGH-gT-G33" id="M2g-dc-BlA"/>
                         <segue destination="5eT-xl-6lK" kind="presentation" identifier="toFeedVC" id="IJt-Gf-p5a"/>
                     </connections>
                 </viewController>

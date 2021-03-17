@@ -21,17 +21,16 @@ class SignUpVC: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        CornerRadios()
+        imageGesture()
+    }
+    
+    func CornerRadios(){
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.layer.masksToBounds = true
         signUpButton.layer.cornerRadius = 8.0
         signUpButton.clipsToBounds = true
-        imageGesture()
     }
- 
-    func signUp(){
-       
-    }
-   
     @IBAction func signUpClicked(_ sender: Any) {
         if nameSurnameTxt.text != "" && emailTx.text != "" && userNameText.text != "" && passwordText.text != ""{
             Auth.auth().createUser(withEmail: emailTx.text!, password: passwordText.text!) { (auth, error) in
@@ -64,16 +63,14 @@ class SignUpVC: BaseViewController {
                             }
                         }
                     }
-                    
                     let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "toTabBarVC") as! UITabBarController
                     self.present(homeVC, animated: true, completion: nil)
                 }
            }
         }
     }
-    
-    
 }
+
 extension SignUpVC: UIImagePickerControllerDelegate , UINavigationControllerDelegate{
   
     func imageGesture(){
@@ -84,15 +81,12 @@ extension SignUpVC: UIImagePickerControllerDelegate , UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         profileImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
-        
     }
     @objc func choosePicture(){
-         
+
          let picker = UIImagePickerController()
          picker.delegate = self
          picker.sourceType = .photoLibrary
          self.present(picker, animated: true, completion: nil)
-         
      }
-     
 }

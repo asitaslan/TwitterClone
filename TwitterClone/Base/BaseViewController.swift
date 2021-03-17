@@ -18,7 +18,9 @@ class BaseViewController: UIViewController {
     
     func makeAlert(textInput:String,messageInput:String){
            let alert = UIAlertController(title: textInput, message: messageInput, preferredStyle: UIAlertController.Style.alert)
-           present(alert, animated: true, completion: nil)
+           let okButton = UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil)
+           alert.addAction(okButton)
+           self.present(alert, animated: true, completion: nil)
     }
     
     func goUploadPost(){
