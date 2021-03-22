@@ -8,10 +8,17 @@
 
 import Foundation
 
-struct UserInfo {
-    var userName: String
-    var Name: String
-    var email: String
-    var password: String
-    var profileImageUrl: String
+class UserInfo {
+    
+    static let sharedUserInfo = UserInfo()
+    
+    var userName = ""
+    var Name = ""
+    var email = ""
+    var password = ""
+    var profileImageUrl = ""
+    
+    private init(){
+        
+    }
 }
