@@ -16,8 +16,7 @@ class HomeVC: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        uploadButton.layer.cornerRadius = uploadButton.frame.size.width/2
-        uploadButton.layer.masksToBounds = true
+        cornerRadius()
         tableViewHome.delegate = self
         tableViewHome.dataSource = self
         tableViewHome.reloadData()
@@ -28,7 +27,10 @@ class HomeVC: BaseViewController {
         
     }
     
-    
+    func cornerRadius(){
+        uploadButton.layer.cornerRadius = uploadButton.frame.size.width/2
+        uploadButton.layer.masksToBounds = true
+    }
 
 }
 

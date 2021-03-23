@@ -23,6 +23,7 @@
 		005C52A725E43A5500609C7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 005C52A625E43A5500609C7E /* Assets.xcassets */; };
 		005C52AA25E43A5500609C7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005C52A825E43A5500609C7E /* LaunchScreen.storyboard */; };
 		005E24D525F10CF00080BFD1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 005E24D425F10CF00080BFD1 /* GoogleService-Info.plist */; };
+		0060E74B260A124900BD2167 /* GetUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0060E74A260A124900BD2167 /* GetUserInfoViewController.swift */; };
 		0082998125EE434E00F939BF /* ProfilePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082998025EE434E00F939BF /* ProfilePageVC.swift */; };
 		00E5547425F112DB00E8B5DD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5547325F112DB00E8B5DD /* UserProfile.swift */; };
 		00E5547625F115AA00E8B5DD /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5547525F115AA00E8B5DD /* Posts.swift */; };
@@ -50,6 +51,7 @@
 		005C52A925E43A5500609C7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		005C52AB25E43A5500609C7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		005E24D425F10CF00080BFD1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0060E74A260A124900BD2167 /* GetUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserInfoViewController.swift; sourceTree = "<group>"; };
 		0082998025EE434E00F939BF /* ProfilePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageVC.swift; sourceTree = "<group>"; };
 		00E5547325F112DB00E8B5DD /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		00E5547525F115AA00E8B5DD /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				00E7A35D25EBB5D20094A83E /* BaseViewController.swift */,
+				0060E74A260A124900BD2167 /* GetUserInfoViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				005C52A225E43A5400609C7E /* ViewController.swift in Sources */,
 				0015E85825E6AD900063A878 /* MessagesVC.swift in Sources */,
 				005C529E25E43A5400609C7E /* AppDelegate.swift in Sources */,
+				0060E74B260A124900BD2167 /* GetUserInfoViewController.swift in Sources */,
 				005C52A025E43A5400609C7E /* SceneDelegate.swift in Sources */,
 				0015E85625E6AD790063A878 /* NotificationVC.swift in Sources */,
 				00E5547625F115AA00E8B5DD /* Posts.swift in Sources */,

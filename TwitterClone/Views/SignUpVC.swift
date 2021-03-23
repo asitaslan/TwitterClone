@@ -31,6 +31,7 @@ class SignUpVC: BaseViewController {
         signUpButton.layer.cornerRadius = 8.0
         signUpButton.clipsToBounds = true
     }
+    
     @IBAction func signUpClicked(_ sender: Any) {
         if nameSurnameTxt.text != "" && emailTx.text != "" && userNameText.text != "" && passwordText.text != ""{
             Auth.auth().createUser(withEmail: emailTx.text!, password: passwordText.text!) { (auth, error) in
