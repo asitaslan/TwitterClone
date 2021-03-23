@@ -20,6 +20,7 @@ class UploadViewController: BaseViewController, UIImagePickerControllerDelegate,
 
         // Do any additional setup after loading the view.
         cornerRadius()
+        getUserInfo()
     }
     
     func cornerRadius(){
