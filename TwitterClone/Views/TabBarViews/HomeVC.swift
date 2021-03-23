@@ -23,7 +23,7 @@ class HomeVC: BaseViewController {
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
-        goUploadPost()
+        UploadViewController.goUploadPost(from: self)
         
     }
     

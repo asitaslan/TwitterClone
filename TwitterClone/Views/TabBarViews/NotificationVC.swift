@@ -21,7 +21,7 @@ class NotificationVC: BaseViewController {
     
 
     @IBAction func addPostClicked(_ sender: Any) {
-        goUploadPost()
+        UploadViewController.goUploadPost(from: self)
     }
     
 

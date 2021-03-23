@@ -24,7 +24,11 @@ class SearchVC: BaseViewController{
     }
     
     @IBAction func addPostSearchButtonClicked(_ sender: Any) {
-        goUploadPost()
+        UploadViewController.goUploadPost(from: self)
+    }
+    @IBAction func goSettingPage(_ sender: UIButton) {
+        let toSettingPage = self.storyboard?.instantiateViewController(identifier: "toSettingVC") as! LogOutVC
+        self.present(toSettingPage, animated: true, completion: nil)
     }
     
 

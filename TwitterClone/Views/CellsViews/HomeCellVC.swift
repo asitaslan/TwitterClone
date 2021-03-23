@@ -31,14 +31,17 @@ class HomeCellVC: UITableViewCell {
         cornerRadius()
         profileImageGesture()
     }
+    
     func profileImageGesture(){
         let gesture = UITapGestureRecognizer(target: self, action: #selector(profileImageClicked))
         profileImageCellView.addGestureRecognizer(gesture)
         profileImageCellView.isUserInteractionEnabled = true
     }
+    
     @objc func profileImageClicked(){
         delegate?.changeImage()
     }
+    
     func cornerRadius(){
         profileImageCellView.layer.cornerRadius = profileImageCellView.frame.size.width/2
         profileImageCellView.layer.masksToBounds = true
@@ -48,6 +51,7 @@ class HomeCellVC: UITableViewCell {
         postImageView1.layer.cornerRadius = 10.0
         postImageView1.clipsToBounds = true
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -19,18 +19,25 @@ class UploadViewController: BaseViewController, UIImagePickerControllerDelegate,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        cornerRadius()
+        setupUI()
         getUserInfo()
+        
+    }
+    private func getUserInfo(){
+        Network.getUserInfo(completion: { (result) in
+        }) { (error) in
+            self.makeAlert(textInput: "Ok", messageInput: error.localizedDescription)
+        }
     }
     
-    func cornerRadius(){
-        tweetButton.layer.cornerRadius = 10.0
-        tweetButton.clipsToBounds = true
+    private func setupUI(){
+        tweetButton.cornerRadius(radius: 10.0)
+        pestTextInput.makeBorder(width: 0.5, color: .blue)
+        pestTextInput.cornerRadius(radius: 8.0)
     }
     
     @IBAction func backFeedVCButton(_ sender: UIButton) {
-        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "toTabBarVC") as! UITabBarController
-        self.present(homeVC, animated: true, completion: nil)
+       dismiss(animated: true, completion: nil)
         
     }
     
@@ -38,51 +45,36 @@ class UploadViewController: BaseViewController, UIImagePickerControllerDelegate,
         let storage = Storage.storage()
         let storageReferance = storage.reference()
         let mediaFolder = storageReferance.child("media")
-            
+        let text = self.pestTextInput.text
         if let data = self.uploadImageView.image?.jpegData(compressionQuality: 0.5){
               let uuid = UUID().uuidString
               let imageReferance = mediaFolder.child("\(uuid).jpg")
-             imageReferance.putData(data, metadata: nil) { (metdata, error) in
+              imageReferance.putData(data, metadata: nil) { (metdata, error) in
                 if error != nil {
                     self.makeAlert(textInput: "ERROR", messageInput: error?.localizedDescription ?? "Error")
                 }else{
                     imageReferance.downloadURL { (url, error) in
                         if error == nil {
                             let imageUrl = url?.absoluteString
-                            let firestore = Firestore.firestore()
-                            if (imageUrl != "" && self.pestTextInput.text != ""){
-                                let userDictonary = ["profileImageUrl": UserInfo.sharedUserInfo.imageUrl, "userNmae": UserInfo.sharedUserInfo.userName, "name": UserInfo.sharedUserInfo.Name, "postText": self.pestTextInput!, "date":FieldValue.serverTimestamp(), "imageUrl": imageUrl!] as [String : Any]
-                                firestore.collection("SharedPost").addDocument(data: userDictonary as [String : Any]) { (error) in
-                                        if error != nil{
-                                            self.makeAlert(textInput: "ERROR", messageInput: error?.localizedDescription ?? "error")
-                                        }
-                                }
-                                self.backFeedVCButton(self.tweetButton)
-                            }else if imageUrl != ""{
-                                let userDictonary = ["profileImageUrl": UserInfo.sharedUserInfo.imageUrl, "userNmae": UserInfo.sharedUserInfo.userName, "name": UserInfo.sharedUserInfo.Name,  "date":FieldValue.serverTimestamp(), "imageUrl": imageUrl!] as [String : Any]
-                                 firestore.collection("SharedPost").addDocument(data: userDictonary as [String : Any]) { (error) in
-                                    if error != nil{
-                                              self.makeAlert(textInput: "ERROR", messageInput: error?.localizedDescription ?? "error")
-                                    }
-                                 }
-                                self.backFeedVCButton(self.tweetButton)
-                            }else if self.pestTextInput.text != "" {
-                                let userDictonary = ["profileImageUrl": UserInfo.sharedUserInfo.imageUrl, "userNmae": UserInfo.sharedUserInfo.userName, "name": UserInfo.sharedUserInfo.Name,  "date":FieldValue.serverTimestamp(), "postText": self.pestTextInput!] as [String : Any]
-                                firestore.collection("SharedPost").addDocument(data: userDictonary as [String : Any]) { (error) in
-                                    if error != nil{
-                                        self.makeAlert(textInput: "ERROR", messageInput: error?.localizedDescription ?? "error")
-                                    }
-                                }
-                                self.backFeedVCButton(self.tweetButton)
-                            }else{
-                                self.makeAlert(textInput: "OK", messageInput: "Please check your post! You can not post empty")
-                            }
+                            self.uploadPostData(text: text, imageUrl: imageUrl)
                         }
                     }
                 }
             }
+        }else{
+            uploadPostData(text: text)
         }
         
+    }
+    
+    private func uploadPostData(text: String? = "", imageUrl: String? = ""){
+        Network.uploadPost(text: text, imageUrl: imageUrl, completion: { (result) in
+            if result{
+                self.dismiss(animated: true, completion: nil)
+            }
+        }) { (error) in
+            self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -97,5 +89,11 @@ class UploadViewController: BaseViewController, UIImagePickerControllerDelegate,
         self.present(picker, animated: true, completion: nil)
     }
     
-
+    static func goUploadPost(from: UIViewController){
+        
+       if let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "UploadViewController") as? UploadViewController{
+          from.present(uploadVC, animated: true, completion: nil)
+       }
+         
+    }
 }
