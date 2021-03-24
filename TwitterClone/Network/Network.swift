@@ -76,14 +76,16 @@ class Network {
     
     static func getPostInfo( compliton: @escaping () ->(), fail: @escaping (Error) -> ()){
       
-        firestoreDatabase.collection("SharedPost").addSnapshotListener { (snapshot, error) in
-            
+        firestoreDatabase.collection("SharedPost").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
             if error == nil {
-                if snapshot?.isEmpty != false && snapshot != nil{
-                    print(snapshot)
-                    
+                if snapshot?.isEmpty == false && snapshot != nil{
+                    for document in snapshot!.documents {
+                        if let username = document.get("userNmae") as? String{
+                            print(username)
+                        }
+                    }
                 }
-        
+                
             }else{
                 fail(error!)
             }

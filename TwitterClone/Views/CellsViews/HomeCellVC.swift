@@ -69,7 +69,7 @@ class HomeCellVC: UITableViewCell {
     }
     
     @IBAction func likeButton(_ sender: UIButton) {
-        
+     
         sender.isSelected.toggle()
         if sender.isSelected{
             count += 1
