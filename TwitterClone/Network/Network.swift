@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 class Network {
     static var firestoreDatabase = Firestore.firestore()
+    
     static func getUserInfo(completion: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
         
         firestoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snapshot, error) in
@@ -73,4 +74,22 @@ class Network {
         }
     }
     
+    static func getPostInfo( compliton: @escaping () ->(), fail: @escaping (Error) -> ()){
+      
+        firestoreDatabase.collection("SharedPost").addSnapshotListener { (snapshot, error) in
+            
+            if error == nil {
+                if snapshot?.isEmpty != false && snapshot != nil{
+                    print(snapshot)
+                    
+                }
+        
+            }else{
+                fail(error!)
+            }
+        }
+    }
+    
 }
+    
+

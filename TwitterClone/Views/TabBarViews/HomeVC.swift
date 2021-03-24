@@ -16,7 +16,8 @@ class HomeVC: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        cornerRadius()
+        setupUI()
+        getPostsInfo()
         tableViewHome.delegate = self
         tableViewHome.dataSource = self
         tableViewHome.reloadData()
@@ -27,16 +28,20 @@ class HomeVC: BaseViewController {
         
     }
     
-    func cornerRadius(){
-        uploadButton.layer.cornerRadius = uploadButton.frame.size.width/2
-        uploadButton.layer.masksToBounds = true
+    func setupUI(){
+        uploadButton.cornerRadius(radius: uploadButton.frame.size.width/2)
     }
-
+    
+    private func getPostsInfo(){
+        Network.getPostInfo(compliton: {
+        
+        }) { (error) in
+            self.makeAlert(textInput: "Error", messageInput: error.localizedDescription)
+        }
+    }
 }
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource{
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
@@ -48,14 +53,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    
-    
 }
+
 extension HomeVC: GoProfilePage{
     func changeImage() {
         let goProfilePage = self.storyboard?.instantiateViewController(withIdentifier: "toProfilePage") as! ProfilePageVC
         self.navigationController?.pushViewController(goProfilePage, animated: true)
     }
-    
-    
 }

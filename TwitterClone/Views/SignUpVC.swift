@@ -21,15 +21,13 @@ class SignUpVC: BaseViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        CornerRadios()
+        setupUI()
         imageGesture()
     }
     
-    func CornerRadios(){
-        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
-        profileImage.layer.masksToBounds = true
-        signUpButton.layer.cornerRadius = 8.0
-        signUpButton.clipsToBounds = true
+    func setupUI(){
+        profileImage.cornerRadius(radius: profileImage.frame.size.width/2)
+        signUpButton.cornerRadius(radius: 8.0)
     }
     
     @IBAction func signUpClicked(_ sender: Any) {
@@ -53,7 +51,12 @@ class SignUpVC: BaseViewController {
                                     if error == nil {
                                         let imageUrl = url?.absoluteString
                                         let firestore = Firestore.firestore()
-                                        let userDictonary = ["email": self.emailTx.text!, "userNmae":self.userNameText.text!, "name": self.nameSurnameTxt.text!, "password": self.passwordText.text!, "imageUrl": imageUrl]
+                                        let userDictonary = ["email": self.emailTx.text!,
+                                                             "userNmae":self.userNameText.text!,
+                                                             "name": self.nameSurnameTxt.text!,
+                                                             "password": self.passwordText.text!,
+                                                             "imageUrl": imageUrl]
+                                        
                                         firestore.collection("UserInfo").addDocument(data: userDictonary as [String : Any]) { (error) in
                                             if error != nil{
                                                 self.makeAlert(textInput: "ERROR", messageInput: error?.localizedDescription ?? "error")
@@ -64,8 +67,7 @@ class SignUpVC: BaseViewController {
                             }
                         }
                     }
-                    let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "toTabBarVC") as! UITabBarController
-                    self.present(homeVC, animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
            }
         }

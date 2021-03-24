@@ -25,11 +25,13 @@ class HomeCellVC: UITableViewCell {
     @IBOutlet weak var retweetCountLbl: UILabel!
     @IBOutlet weak var likeCountLbl: UILabel!
     weak var delegate: GoProfilePage?
+    var count: Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         cornerRadius()
         profileImageGesture()
+        
     }
     
     func profileImageGesture(){
@@ -67,7 +69,14 @@ class HomeCellVC: UITableViewCell {
     }
     
     @IBAction func likeButton(_ sender: UIButton) {
+        
         sender.isSelected.toggle()
+        if sender.isSelected{
+            count += 1
+        }else{
+            count -= 1
+        }
+        likeCountLbl.text = String(count)
     }
     
     @IBAction func sendButton(_ sender: UIButton) {

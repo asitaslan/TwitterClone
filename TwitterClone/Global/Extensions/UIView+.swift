@@ -18,6 +18,5 @@ extension UIView{
     func makeBorder(width: CGFloat, color: UIColor){
         self.layer.borderWidth = width
         self.layer.borderColor = color.cgColor
-        
     }
 }

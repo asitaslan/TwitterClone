@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UploadViewController: BaseViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class UploadViewController: BaseViewController{
 
     @IBOutlet weak var tweetButton: UIButton!
     @IBOutlet weak var pestTextInput: UITextView!
@@ -64,7 +64,6 @@ class UploadViewController: BaseViewController, UIImagePickerControllerDelegate,
         }else{
             uploadPostData(text: text)
         }
-        
     }
     
     private func uploadPostData(text: String? = "", imageUrl: String? = ""){
@@ -77,6 +76,16 @@ class UploadViewController: BaseViewController, UIImagePickerControllerDelegate,
         }
     }
     
+    static func goUploadPost(from: UIViewController){
+        
+       if let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "UploadViewController") as? UploadViewController{
+          from.present(uploadVC, animated: true, completion: nil)
+       }
+    }
+    
+}
+
+extension UploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
           uploadImageView.image = info[.originalImage] as? UIImage
           self.dismiss(animated: true, completion: nil)
@@ -87,13 +96,5 @@ class UploadViewController: BaseViewController, UIImagePickerControllerDelegate,
         picker.delegate = self
         picker.sourceType = .photoLibrary
         self.present(picker, animated: true, completion: nil)
-    }
-    
-    static func goUploadPost(from: UIViewController){
-        
-       if let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "UploadViewController") as? UploadViewController{
-          from.present(uploadVC, animated: true, completion: nil)
-       }
-         
     }
 }
