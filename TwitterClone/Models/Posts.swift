@@ -8,13 +8,11 @@
 
 import Foundation
 
-struct Posts {
+struct Posts: Codable{
     var date: Date
     var userNmae: String
     var name: String
     var postImageUrl: String
     var postText: String
-    var timeDifferance: Int
-    var likeCount: Int
     var profileImageUrl: String
 }

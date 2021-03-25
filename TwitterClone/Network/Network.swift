@@ -74,20 +74,14 @@ class Network {
         }
     }
     
-    static func getPostInfo( compliton: @escaping () ->(), fail: @escaping (Error) -> ()){
-      
-        firestoreDatabase.collection("SharedPost").order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
-            if error == nil {
-                if snapshot?.isEmpty == false && snapshot != nil{
-                    for document in snapshot!.documents {
-                        if let username = document.get("userNmae") as? String{
-                            print(username)
-                        }
-                    }
-                }
-                
-            }else{
-                fail(error!)
+    static func getPostInfo(url: URL, compliton: @escaping (Posts) ->(), fail: @escaping (Error) -> ()){
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error{
+                fail(error)
+            }else if let data = data{
+                let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+                print(json ?? "")
             }
         }
     }

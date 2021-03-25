@@ -12,6 +12,7 @@ class HomeVC: BaseViewController {
 
     @IBOutlet weak var tableViewHome: UITableView!
     @IBOutlet weak var uploadButton: UIButton!
+    var takeData: Posts!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +21,7 @@ class HomeVC: BaseViewController {
         getPostsInfo()
         tableViewHome.delegate = self
         tableViewHome.dataSource = self
-        tableViewHome.reloadData()
+        
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
@@ -33,10 +34,16 @@ class HomeVC: BaseViewController {
     }
     
     private func getPostsInfo(){
-        Network.getPostInfo(compliton: {
-        
+       let url = URL(string: "https://console.firebase.google.com/project/tweetterclone/firestore/data~2FSharedPost")!
+        Network.getPostInfo(url: url, compliton: { (posts) in
+            self.takeData = posts
+            DispatchQueue.main.async {
+                self.tableViewHome.reloadData()
+            }
         }) { (error) in
-            self.makeAlert(textInput: "Error", messageInput: error.localizedDescription)
+            DispatchQueue.main.async {
+                self.makeAlert(textInput: "Error", messageInput: error.localizedDescription)
+            }
         }
     }
 }
