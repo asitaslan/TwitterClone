@@ -34,16 +34,10 @@ class HomeVC: BaseViewController {
     }
     
     private func getPostsInfo(){
-       let url = URL(string: "https://console.firebase.google.com/project/tweetterclone/firestore/data~2FSharedPost")!
-        Network.getPostInfo(url: url, compliton: { (posts) in
-            self.takeData = posts
-            DispatchQueue.main.async {
-                self.tableViewHome.reloadData()
-            }
+        Network.getPostInfo(compliton: { (result) in
+           
         }) { (error) in
-            DispatchQueue.main.async {
-                self.makeAlert(textInput: "Error", messageInput: error.localizedDescription)
-            }
+            self.makeAlert(textInput: "Error", messageInput: error.localizedDescription)
         }
     }
 }

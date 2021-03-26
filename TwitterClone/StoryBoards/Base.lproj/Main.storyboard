@@ -321,7 +321,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xXL-Pg-me1">
-                                                            <rect key="frame" x="15" y="287.5" width="306.5" height="32"/>
+                                                            <rect key="frame" x="25.5" y="287.5" width="286" height="32"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iY7-v9-Z94">
                                                                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -376,14 +376,14 @@
                                                                         <action selector="likeButton:" destination="Ye2-Jc-LEU" eventType="touchUpInside" id="W2I-G2-VLu"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1z-dQ-g8X">
-                                                                    <rect key="frame" x="235.5" y="0.0" width="31" height="32"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1z-dQ-g8X">
+                                                                    <rect key="frame" x="235.5" y="0.0" width="10.5" height="32"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ak-KT-QGY">
-                                                                    <rect key="frame" x="274.5" y="0.0" width="32" height="32"/>
+                                                                    <rect key="frame" x="254" y="0.0" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="J1z-kE-94b"/>
                                                                         <constraint firstAttribute="height" constant="32" id="OHt-wA-h4e"/>
