@@ -8,11 +8,15 @@
 
 import Foundation
 
-struct Posts: Codable{
-    var date: Date
-    var userNmae: String
-    var name: String
-    var postImageUrl: String
-    var postText: String
-    var profileImageUrl: String
+class Posts {
+    static let postsInfo = Posts()
+    var userNmae = ""
+    var name = ""
+    var postImageUrl = ""
+    var postText = ""
+    var profileImageUrl = ""
+    
+    private init() {
+        
+    }
 }

@@ -47,7 +47,6 @@ class HomeCellVC: UITableViewCell {
     func cornerRadius(){
         profileImageCellView.layer.cornerRadius = profileImageCellView.frame.size.width/2
         profileImageCellView.layer.masksToBounds = true
-        usernameLbl.text = "asitaslan"
         nameSuenameLbl.text = "Asit Aslan"
         profileImageCellView.image = UIImage(named: "loginBacground")
         postImageView1.layer.cornerRadius = 10.0

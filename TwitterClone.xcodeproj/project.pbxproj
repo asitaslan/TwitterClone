@@ -14,6 +14,7 @@
 		0015E85625E6AD790063A878 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0015E85525E6AD790063A878 /* NotificationVC.swift */; };
 		0015E85825E6AD900063A878 /* MessagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0015E85725E6AD900063A878 /* MessagesVC.swift */; };
 		0015E85B25E6BCC10063A878 /* HomeCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0015E85A25E6BCC10063A878 /* HomeCellVC.swift */; };
+		002D1871260E583E00522FDB /* GetPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002D1870260E583E00522FDB /* GetPosts.swift */; };
 		0033E3D525EA4317001B6F2D /* SearchCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0033E3D425EA4317001B6F2D /* SearchCellVC.swift */; };
 		004125A125EE3D3F008FF7DB /* Uploads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 004125A325EE3D3F008FF7DB /* Uploads.storyboard */; };
 		005C529E25E43A5400609C7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005C529D25E43A5400609C7E /* AppDelegate.swift */; };
@@ -42,6 +43,7 @@
 		0015E85525E6AD790063A878 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		0015E85725E6AD900063A878 /* MessagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesVC.swift; sourceTree = "<group>"; };
 		0015E85A25E6BCC10063A878 /* HomeCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellVC.swift; sourceTree = "<group>"; };
+		002D1870260E583E00522FDB /* GetPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPosts.swift; sourceTree = "<group>"; };
 		0033E3D425EA4317001B6F2D /* SearchCellVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCellVC.swift; sourceTree = "<group>"; };
 		004125A225EE3D3F008FF7DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Uploads.storyboard; sourceTree = "<group>"; };
 		005C529A25E43A5400609C7E /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 			children = (
 				00E5547325F112DB00E8B5DD /* UserProfile.swift */,
 				00E5547525F115AA00E8B5DD /* Posts.swift */,
+				002D1870260E583E00522FDB /* GetPosts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				00E7A35E25EBB5D20094A83E /* BaseViewController.swift in Sources */,
 				00045BBE25EF8B08003F5A5C /* ProfilePageCellVC.swift in Sources */,
 				0015E85B25E6BCC10063A878 /* HomeCellVC.swift in Sources */,
+				002D1871260E583E00522FDB /* GetPosts.swift in Sources */,
 				005C52A225E43A5400609C7E /* ViewController.swift in Sources */,
 				0015E85825E6AD900063A878 /* MessagesVC.swift in Sources */,
 				005C529E25E43A5400609C7E /* AppDelegate.swift in Sources */,

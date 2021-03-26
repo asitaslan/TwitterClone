@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 class Network {
     static var firestoreDatabase = Firestore.firestore()
+    static var postArray = [GetPost]()
     
     static func getUserInfo(completion: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
         
@@ -74,25 +75,39 @@ class Network {
         }
     }
     
-    static func getPostInfo( compliton: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) -> ()){
+    static func getPostInfo(compliton: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) -> ()){
         
         firestoreDatabase.collection("SharedPost").order(by: "date", descending: true).getDocuments { (snapshots, error) in
             if error != nil{
                 fail(error!)
             }else{
+               
                 if snapshots?.isEmpty != true && snapshots != nil {
+                    postArray.removeAll(keepingCapacity: false)
                     for document in snapshots!.documents{
                         if let username = document.get("userNmae") as? String{
-                            print(username)
+                            Posts.postsInfo.userNmae = username
                         }
+                        if let imageUrl = document.get("imageUrl") as? String{
+                            Posts.postsInfo.postImageUrl = imageUrl
+                        }
+                        if let postsText = document.get("postText") as? String{
+                            Posts.postsInfo.postText = postsText
+                        }
+                        if let profileImage = document.get("profileImageUrl") as? String{
+                            Posts.postsInfo.profileImageUrl = profileImage
+                        }
+                        if let name = document.get("name") as? String{
+                            Posts.postsInfo.name = name
+                        }
+                        let post = GetPost.init(userNmae: Posts.postsInfo.userNmae, name: Posts.postsInfo.name, postImageUrl: Posts.postsInfo.postImageUrl, postText: Posts.postsInfo.postText, profileImageUrl: Posts.postsInfo.profileImageUrl)
+                        postArray.append(post)
                     }
                 }
                 compliton(true)
             }
         }
-      
     }
-    
 }
     
 
