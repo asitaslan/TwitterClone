@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class ProfilePageVC: UIViewController {
+import SDWebImage
+class ProfilePageVC: BaseViewController {
 
     @IBOutlet weak var profilePageProfileImage: UIImageView!
     @IBOutlet weak var profilePageNameLbl: UILabel!
@@ -23,11 +23,26 @@ class ProfilePageVC: UIViewController {
         // Do any additional setup after loading the view.
         profilePageTableView.delegate = self
         profilePageTableView.dataSource = self
+        userInfo()
     }
     
     @IBAction func updateProfileButtonClicked(_ sender: UIButton) {
         
     }
+    
+    func userInfo(){
+        Network.getUserInfo(completion: { (result) in
+        if result{
+            self.profilePageNameLbl.text = UserInfo.sharedUserInfo.Name
+            self.profilePageProfileImage.sd_setImage(with: URL(string: UserInfo.sharedUserInfo.imageUrl))
+            self.profilePageUserNameLbl.text = UserInfo.sharedUserInfo.userName
+        }
+            
+        }) { (error) in
+            self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
+        }
+    }
+    
 }
 
 extension ProfilePageVC: UITableViewDelegate, UITableViewDataSource {

@@ -21,6 +21,7 @@ class UploadViewController: BaseViewController{
         // Do any additional setup after loading the view.
         setupUI()
         getUserInfo()
+        profileImage()
         
     }
     private func getUserInfo(){
@@ -34,6 +35,7 @@ class UploadViewController: BaseViewController{
         tweetButton.cornerRadius(radius: 10.0)
         pestTextInput.makeBorder(width: 0.5, color: .blue)
         pestTextInput.cornerRadius(radius: 8.0)
+        uploadVCprofilePhoto.cornerRadius(radius: uploadVCprofilePhoto.frame.size.width/2)
     }
     
     @IBAction func backFeedVCButton(_ sender: UIButton) {
@@ -64,6 +66,7 @@ class UploadViewController: BaseViewController{
         }else{
             uploadPostData(text: text)
         }
+        
     }
     
     private func uploadPostData(text: String? = "", imageUrl: String? = ""){
@@ -75,7 +78,15 @@ class UploadViewController: BaseViewController{
             self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
         }
     }
-    
+    func profileImage(){
+        Network.getUserInfo(completion: { (result) in
+            if result{
+                self.uploadVCprofilePhoto.sd_setImage(with: URL(string: UserInfo.sharedUserInfo.imageUrl))
+            }
+        }) { (error) in
+            self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
+        }
+    }
     static func goUploadPost(from: UIViewController){
         
        if let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "UploadViewController") as? UploadViewController{
