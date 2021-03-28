@@ -28,6 +28,9 @@ class ProfilePageVC: BaseViewController {
     
     @IBAction func updateProfileButtonClicked(_ sender: UIButton) {
         
+        let goUpdatePage = self.storyboard?.instantiateViewController(withIdentifier: "UpdateProfil") as! UpdateProfil
+        self.navigationController?.pushViewController(goUpdatePage, animated: true)
+        
     }
     
     func userInfo(){
@@ -41,8 +44,7 @@ class ProfilePageVC: BaseViewController {
         }) { (error) in
             self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
         }
-    }
-    
+    }    
 }
 
 extension ProfilePageVC: UITableViewDelegate, UITableViewDataSource {

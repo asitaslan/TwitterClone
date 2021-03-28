@@ -11,7 +11,7 @@ import Firebase
 class Network {
     static var firestoreDatabase = Firestore.firestore()
     static var postArray = [GetPost]()
-    
+   
     static func getUserInfo(completion: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
         
         firestoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snapshot, error) in
@@ -100,7 +100,11 @@ class Network {
                         if let name = document.get("name") as? String{
                             Posts.postsInfo.name = name
                         }
-                        let post = GetPost.init(userNmae: Posts.postsInfo.userNmae, name: Posts.postsInfo.name, postImageUrl: Posts.postsInfo.postImageUrl, postText: Posts.postsInfo.postText, profileImageUrl: Posts.postsInfo.profileImageUrl)
+                        let post = GetPost.init(userNmae: Posts.postsInfo.userNmae,
+                                                name: Posts.postsInfo.name,
+                                                postImageUrl: Posts.postsInfo.postImageUrl,
+                                                postText: Posts.postsInfo.postText,
+                                                profileImageUrl: Posts.postsInfo.profileImageUrl)
                         postArray.append(post)
                     }
                 }

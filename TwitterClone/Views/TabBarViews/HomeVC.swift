@@ -20,10 +20,13 @@ class HomeVC: BaseViewController {
 
         // Do any additional setup after loading the view.
         setupUI()
-        getPostsInfo()
+        viewWillAppear(true)
         tableViewHome.delegate = self
         tableViewHome.dataSource = self
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        getPostsInfo()
     }
     
     @IBAction func uploadButtonClicked(_ sender: Any) {
@@ -59,16 +62,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableViewHome.dequeueReusableCell(withIdentifier: "toHomeCellVC", for: indexPath) as! HomeCellVC
         cell.delegate = self
         cell.usernameLbl.text = postArray[indexPath.row].userNmae
-        if postArray[indexPath.row].postText != ""{
-            cell.postViewLbl.text = postArray[indexPath.row].postText
-        }else{
-            cell.postViewLbl.isHidden = true
-        }
-        if postArray[indexPath.row].postImageUrl != ""{
-            cell.postImageView1.sd_setImage(with: URL(string: postArray[indexPath.row].postImageUrl))
-        }else {
-            cell.postImageView1.isHidden = true
-        }
+        cell.postViewLbl.text = postArray[indexPath.row].postText
+        cell.postImageView1.sd_setImage(with: URL(string: postArray[indexPath.row].postImageUrl))
         cell.profileImageCellView.sd_setImage(with: URL(string: postArray[indexPath.row].profileImageUrl))
         cell.nameSuenameLbl.text = postArray[indexPath.row].name
         return cell
