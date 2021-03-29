@@ -81,7 +81,6 @@ class Network {
             if error != nil{
                 fail(error!)
             }else{
-               
                 if snapshots?.isEmpty != true && snapshots != nil {
                     postArray.removeAll(keepingCapacity: false)
                     for document in snapshots!.documents{
@@ -109,6 +108,28 @@ class Network {
                     }
                 }
                 compliton(true)
+            }
+        }
+    }
+    
+    static func updateUser(name: String? = "", userNmae: String? = "", profileImage: String? = "", backImage: String? = "",
+                           complition: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
+    firestoreDatabase.collection("UserInfo").whereField("email", isNotEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
+            if error != nil{
+                fail(error!)
+            }else{
+                if snaphot?.isEmpty != true && snaphot != nil{
+                    if let name = name{
+                         let document = snaphot!.documents.first?.reference.updateData(["name" : name])
+                    }
+                    if let username = userNmae{
+                        let document = snaphot?.documents.first?.reference.updateData(["userNmae": username])
+                    }
+                    if let imageUrl = profileImage{
+                        let document = snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
+                    }
+                }
+
             }
         }
     }

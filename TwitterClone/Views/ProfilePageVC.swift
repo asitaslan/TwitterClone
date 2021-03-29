@@ -23,7 +23,11 @@ class ProfilePageVC: BaseViewController {
         // Do any additional setup after loading the view.
         profilePageTableView.delegate = self
         profilePageTableView.dataSource = self
-        userInfo()
+        viewWillAppear(true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      userInfo()
     }
     
     @IBAction func updateProfileButtonClicked(_ sender: UIButton) {

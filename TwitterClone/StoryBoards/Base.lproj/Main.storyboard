@@ -321,7 +321,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="xXL-Pg-me1">
-                                                            <rect key="frame" x="25.5" y="287.5" width="286" height="32"/>
+                                                            <rect key="frame" x="36" y="287.5" width="265" height="32"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iY7-v9-Z94">
                                                                     <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -334,14 +334,14 @@
                                                                         <action selector="commendButton:" destination="Ye2-Jc-LEU" eventType="touchUpInside" id="a5H-Ip-k7l"/>
                                                                     </connections>
                                                                 </button>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="5885" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zn-z5-cBK">
-                                                                    <rect key="frame" x="40" y="0.0" width="41.5" height="32"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zn-z5-cBK">
+                                                                    <rect key="frame" x="40" y="0.0" width="20.5" height="32"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="H5o-qD-8tX">
-                                                                    <rect key="frame" x="89.5" y="0.0" width="32" height="32"/>
+                                                                    <rect key="frame" x="68.5" y="0.0" width="32" height="32"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZ3-Oe-4AU">
                                                                             <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
@@ -359,13 +359,13 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="retweet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMC-Wk-HHm">
-                                                                    <rect key="frame" x="129.5" y="0.0" width="58" height="32"/>
+                                                                    <rect key="frame" x="108.5" y="0.0" width="58" height="32"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4z-15-ncV">
-                                                                    <rect key="frame" x="195.5" y="0.0" width="32" height="32"/>
+                                                                    <rect key="frame" x="174.5" y="0.0" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="LQt-Sd-HfO"/>
                                                                         <constraint firstAttribute="height" constant="32" id="O9F-fo-Fx3"/>
@@ -377,13 +377,13 @@
                                                                     </connections>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b1z-dQ-g8X">
-                                                                    <rect key="frame" x="235.5" y="0.0" width="10.5" height="32"/>
+                                                                    <rect key="frame" x="214.5" y="0.0" width="10.5" height="32"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ak-KT-QGY">
-                                                                    <rect key="frame" x="254" y="0.0" width="32" height="32"/>
+                                                                    <rect key="frame" x="233" y="0.0" width="32" height="32"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="32" id="J1z-kE-94b"/>
                                                                         <constraint firstAttribute="height" constant="32" id="OHt-wA-h4e"/>
@@ -1607,6 +1607,9 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="updateButtonCliced:" destination="ePq-rb-RE2" eventType="touchUpInside" id="7Wo-NB-5DG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1628,6 +1631,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sny-U7-GCF"/>
                     </view>
+                    <connections>
+                        <outlet property="backImage" destination="cV4-Vw-35M" id="NZs-fp-ynb"/>
+                        <outlet property="nameTextInput" destination="0sF-BO-arm" id="VDR-Ij-SuK"/>
+                        <outlet property="profileImage" destination="qHv-cY-Hcy" id="Aig-F4-Cww"/>
+                        <outlet property="updateButton" destination="gKf-wc-tj1" id="1O6-jV-dSI"/>
+                        <outlet property="userNameInput" destination="faT-nX-sVu" id="0Yb-og-rQ0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Bb-5o-aNe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
