@@ -24,10 +24,15 @@ class ProfilePageVC: BaseViewController {
         profilePageTableView.delegate = self
         profilePageTableView.dataSource = self
         viewWillAppear(true)
+        setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
       userInfo()
+    }
+    
+    func setupUI(){
+        self.profilePageProfileImage.cornerRadius(radius: profilePageProfileImage.frame.size.width/2)
     }
     
     @IBAction func updateProfileButtonClicked(_ sender: UIButton) {

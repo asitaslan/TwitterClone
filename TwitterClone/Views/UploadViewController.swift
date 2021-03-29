@@ -78,6 +78,7 @@ class UploadViewController: BaseViewController{
             self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
         }
     }
+    
     func profileImage(){
         Network.getUserInfo(completion: { (result) in
             if result{
@@ -87,6 +88,7 @@ class UploadViewController: BaseViewController{
             self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
         }
     }
+    
     static func goUploadPost(from: UIViewController){
         
        if let uploadVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "UploadViewController") as? UploadViewController{

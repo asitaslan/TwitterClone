@@ -114,22 +114,29 @@ class Network {
     
     static func updateUser(name: String? = "", userNmae: String? = "", profileImage: String? = "", backImage: String? = "",
                            complition: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
-    firestoreDatabase.collection("UserInfo").whereField("email", isNotEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
+        
+    firestoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
             if error != nil{
                 fail(error!)
             }else{
                 if snaphot?.isEmpty != true && snaphot != nil{
                     if let name = name{
-                         let document = snaphot!.documents.first?.reference.updateData(["name" : name])
+                        if name != ""{
+                            let document = snaphot!.documents.first?.reference.updateData(["name" : name])
+                        }
                     }
                     if let username = userNmae{
-                        let document = snaphot?.documents.first?.reference.updateData(["userNmae": username])
+                        if username != ""{
+                            let document = snaphot?.documents.first?.reference.updateData(["userNmae": username])
+                        }
+                        
                     }
                     if let imageUrl = profileImage{
-                        let document = snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
+                        if imageUrl != "" {
+                            let document = snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
+                        }
                     }
                 }
-
             }
         }
     }
