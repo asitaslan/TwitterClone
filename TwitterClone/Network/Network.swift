@@ -10,8 +10,8 @@ import Foundation
 import Firebase
 class Network {
     static var firestoreDatabase = Firestore.firestore()
+    static var firestoredatabase = Firestore.firestore()
     static var postArray = [GetPost]()
-   
     static func getUserInfo(completion: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
         
         firestoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snapshot, error) in
@@ -114,7 +114,7 @@ class Network {
     
     static func updateUser(name: String? = "", userNmae: String? = "", profileImage: String? = "", backImage: String? = "",
                            complition: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
-        
+    
     firestoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
             if error != nil{
                 fail(error!)
@@ -122,24 +122,53 @@ class Network {
                 if snaphot?.isEmpty != true && snaphot != nil{
                     if let name = name{
                         if name != ""{
-                            let document = snaphot!.documents.first?.reference.updateData(["name" : name])
+                            snaphot!.documents.first?.reference.updateData(["name" : name])
                         }
                     }
                     if let username = userNmae{
                         if username != ""{
-                            let document = snaphot?.documents.first?.reference.updateData(["userNmae": username])
+                          snaphot?.documents.first?.reference.updateData(["userNmae": username])
                         }
                         
                     }
                     if let imageUrl = profileImage{
                         if imageUrl != "" {
-                            let document = snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
+                            snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
+                        }
+                    }
+                    for document in snaphot!.documents{
+                        if let user = document.get("userNmae") as? String {
+                            firestoredatabase.collection("SharedPost").whereField("userNmae", isEqualTo: user).getDocuments { (snap, Error) in
+                                if Error != nil{
+                                    fail(Error!)
+                                }else{
+                                    if snap?.isEmpty != true && snap != nil{
+                                        if let name = name{
+                                            if name != ""{
+                                                snaphot!.documents.first?.reference.updateData(["name" : name])
+                                            }
+                                        }
+                                        if let username = userNmae{
+                                            if username != ""{
+                                              snaphot?.documents.first?.reference.updateData(["userNmae": username])
+                                            }
+                                            
+                                        }
+                                        if let imageUrl = profileImage{
+                                            if imageUrl != "" {
+                                                snaphot?.documents.first?.reference.updateData(["profileImageUrl" : imageUrl])
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     }
+    
 }
     
 
