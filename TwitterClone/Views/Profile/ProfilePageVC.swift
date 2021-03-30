@@ -17,6 +17,7 @@ class ProfilePageVC: BaseViewController {
     @IBOutlet weak var tweetsViewProfilePage: UIView!
     @IBOutlet weak var likesViewProfilePage: UIView!
     @IBOutlet weak var profilePageTableView: UITableView!
+    @IBOutlet weak var backImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +34,7 @@ class ProfilePageVC: BaseViewController {
     
     func setupUI(){
         self.profilePageProfileImage.cornerRadius(radius: profilePageProfileImage.frame.size.width/2)
+        updateProfileButton.cornerRadius(radius: 10.0)
     }
     
     @IBAction func updateProfileButtonClicked(_ sender: UIButton) {
@@ -45,10 +47,11 @@ class ProfilePageVC: BaseViewController {
     func userInfo(){
         Network.getUserInfo(completion: { (result) in
         if result{
+            
             self.profilePageNameLbl.text = UserInfo.sharedUserInfo.Name
             self.profilePageProfileImage.sd_setImage(with: URL(string: UserInfo.sharedUserInfo.imageUrl))
             self.profilePageUserNameLbl.text = UserInfo.sharedUserInfo.userName
-        
+            self.backImageView.sd_setImage(with: URL(string: UserInfo.sharedUserInfo.backImageUrl))
         }
             
         }) { (error) in
@@ -67,5 +70,5 @@ extension ProfilePageVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
 }
+

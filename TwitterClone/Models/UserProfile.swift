@@ -17,6 +17,7 @@ class UserInfo {
     var email = ""
     var password = ""
     var imageUrl = ""
+    var backImageUrl = ""
     
     private init(){
         

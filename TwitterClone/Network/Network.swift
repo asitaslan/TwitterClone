@@ -32,6 +32,10 @@ class Network {
                         if let imageUrl = document.get("imageUrl") as? String {
                             UserInfo.sharedUserInfo.imageUrl = imageUrl
                         }
+                        if let backImageUrl = document.get("backImage") as? String{
+                            UserInfo.sharedUserInfo.backImageUrl = backImageUrl
+                        }
+                    
                      }
                     completion(true)
                 }
@@ -117,64 +121,63 @@ class Network {
     
     static func updateUser(name: String? = "", userNmae: String? = "", profileImage: String? = "", backImage: String? = "",
                            complition: @escaping (_ isSuccess: Bool) ->(), fail: @escaping (Error) ->()){
-    
-    firestoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
-            if error != nil{
-                fail(error!)
-            }else{
-                if snaphot?.isEmpty != true && snaphot != nil{
-                    if let name = name{
-                        if name != ""{
-                            snaphot!.documents.first?.reference.updateData(["name" : name])
-                        }
-                    }
-                    if let username = userNmae{
-                        if username != ""{
-                          snaphot?.documents.first?.reference.updateData(["userNmae": username])
-                        }
-                        
-                    }
-                    if let imageUrl = profileImage{
-                        if imageUrl != "" {
-                            snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
-                        }
-                    }
-                    if let backImage = backImage{
-                        if backImage != "" {
-                            snaphot?.documents.first?.reference.updateData(["backImage" : backImage])
-                        }
-                    }
-                }
-            }
-        }
-    
-        firestoredatabase.collection("SharedPost").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
-            if error != nil{
-                fail(error!)
-            }else{
-                if snaphot?.isEmpty != true && snaphot != nil {
-                    for document in snaphot!.documents {
-                        if let name = name {
+        firestoreDatabase.collection("UserInfo").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
+                if error != nil{
+                    fail(error!)
+                }else{
+                    if snaphot?.isEmpty != true && snaphot != nil{
+                        if let name = name{
                             if name != ""{
-                                document.reference.updateData(["name" : name])
+                                snaphot!.documents.first?.reference.updateData(["name" : name])
                             }
                         }
                         if let username = userNmae{
-                            if userNmae != ""{
-                                document.reference.updateData(["userNmae" : username])
-                                
+                            if username != ""{
+                              snaphot?.documents.first?.reference.updateData(["userNmae": username])
+                            }
+                            
+                        }
+                        if let imageUrl = profileImage{
+                            if imageUrl != "" {
+                                snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
                             }
                         }
-                        if let profileImage = profileImage{
-                            if profileImage != ""{
-                                document.reference.updateData(["profileImageUrl" : profileImage])
+                        if let backImage = backImage{
+                            if backImage != "" {
+                                snaphot?.documents.first?.reference.updateData(["backImage" : backImage])
+                            }
+                        }
+                    }
+                }
+            }
+        
+            firestoredatabase.collection("SharedPost").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
+                if error != nil{
+                    fail(error!)
+                }else{
+                    if snaphot?.isEmpty != true && snaphot != nil {
+                        for document in snaphot!.documents {
+                            if let name = name {
+                                if name != ""{
+                                    document.reference.updateData(["name" : name])
+                                }
+                            }
+                            if let username = userNmae{
+                                if userNmae != ""{
+                                    document.reference.updateData(["userNmae" : username])
+                                    
+                                }
+                            }
+                            if let profileImage = profileImage{
+                                if profileImage != ""{
+                                    document.reference.updateData(["profileImageUrl" : profileImage])
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
 }
     
 

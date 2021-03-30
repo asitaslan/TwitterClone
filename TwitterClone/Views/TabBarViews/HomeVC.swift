@@ -15,6 +15,7 @@ class HomeVC: BaseViewController {
     @IBOutlet weak var uploadButton: UIButton!
     var takeData: Posts!
     var postArray = [GetPost]()
+    var email: String?
     override func viewDidLoad() {
         super.viewDidLoad()
 

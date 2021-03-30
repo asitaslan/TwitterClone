@@ -1523,6 +1523,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bPE-dt-fkI"/>
                     <connections>
+                        <outlet property="backImageView" destination="B5s-gt-PJK" id="BOh-sG-p0g"/>
                         <outlet property="likesViewProfilePage" destination="rs3-ad-MYe" id="xBc-UV-dLR"/>
                         <outlet property="profilePageNameLbl" destination="3ed-aL-hZZ" id="64b-VI-nEI"/>
                         <outlet property="profilePageProfileImage" destination="uTu-od-tqp" id="dBD-KA-lII"/>

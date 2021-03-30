@@ -23,8 +23,9 @@ class UpdateProfil: BaseViewController {
         // Do any additional setup after loading the view.
         setupUI()
         imageGesture()
-        viewWillAppear(true)
         backImageGesture()
+        viewWillAppear(true)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,22 +99,32 @@ class UpdateProfil: BaseViewController {
     
 }
 extension UpdateProfil: UIImagePickerControllerDelegate , UINavigationControllerDelegate{
-  
-    func imageGesture(){
+    
+    
+    
+    func imageGesture() -> Bool{
         profileImage.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
         profileImage.addGestureRecognizer(gestureRecognizer)
+        return true
     }
     
-    func backImageGesture(){
+    func backImageGesture() -> Bool{
         backImage.isUserInteractionEnabled = true
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(chooseBackPicture))
         backImage.addGestureRecognizer(gesture)
+        return true
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        profileImage.image = info[.originalImage] as? UIImage
+        if backImageGesture(){
+            backImage.image = info[.originalImage] as? UIImage
+        }
+        if imageGesture(){
+            profileImage.image = info[.originalImage] as? UIImage
+        }
         self.dismiss(animated: true, completion: nil)
+        
     }
     
     @objc func choosePicture(){
@@ -123,4 +134,12 @@ extension UpdateProfil: UIImagePickerControllerDelegate , UINavigationController
          picker.sourceType = .photoLibrary
          self.present(picker, animated: true, completion: nil)
      }
+    
+    @objc func chooseBackPicture(){
+
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .photoLibrary
+        self.present(picker, animated: true, completion: nil)
+    }
 }

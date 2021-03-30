@@ -169,17 +169,41 @@
 		005C52B125E43A7200609C7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				00A7994F2613B68300C9A691 /* Profile */,
+				00A7994E2613B63A00C9A691 /* Update-Upload */,
+				00A7994D2613B5D900C9A691 /* SignIN-UP-LogOut */,
 				000D5B5525EA349800FB9E10 /* TabBarViews */,
 				0015E85925E6BC940063A878 /* CellsViews */,
 				000D5B5425EA344100FB9E10 /* SupportingDelegates */,
-				005C52A125E43A5400609C7E /* ViewController.swift */,
-				0015E84F25E698C00063A878 /* SignUpVC.swift */,
-				00E7A35A25EBB1EB0094A83E /* UploadViewController.swift */,
-				0082998025EE434E00F939BF /* ProfilePageVC.swift */,
-				00E10C6B260A627E0067873B /* LogOutVC.swift */,
-				009403D92611025100F873B8 /* UpdateProfil.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		00A7994D2613B5D900C9A691 /* SignIN-UP-LogOut */ = {
+			isa = PBXGroup;
+			children = (
+				005C52A125E43A5400609C7E /* ViewController.swift */,
+				0015E84F25E698C00063A878 /* SignUpVC.swift */,
+				00E10C6B260A627E0067873B /* LogOutVC.swift */,
+			);
+			path = "SignIN-UP-LogOut";
+			sourceTree = "<group>";
+		};
+		00A7994E2613B63A00C9A691 /* Update-Upload */ = {
+			isa = PBXGroup;
+			children = (
+				00E7A35A25EBB1EB0094A83E /* UploadViewController.swift */,
+				009403D92611025100F873B8 /* UpdateProfil.swift */,
+			);
+			path = "Update-Upload";
+			sourceTree = "<group>";
+		};
+		00A7994F2613B68300C9A691 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				0082998025EE434E00F939BF /* ProfilePageVC.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		00E10C6D260A6A710067873B /* Network */ = {
