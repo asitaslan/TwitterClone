@@ -48,6 +48,7 @@ class ProfilePageVC: BaseViewController {
             self.profilePageNameLbl.text = UserInfo.sharedUserInfo.Name
             self.profilePageProfileImage.sd_setImage(with: URL(string: UserInfo.sharedUserInfo.imageUrl))
             self.profilePageUserNameLbl.text = UserInfo.sharedUserInfo.userName
+        
         }
             
         }) { (error) in

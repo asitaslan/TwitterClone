@@ -16,6 +16,7 @@ class UpdateProfil: BaseViewController {
     @IBOutlet weak var nameTextInput: UITextField!
     @IBOutlet weak var userNameInput: UITextField!
     @IBOutlet weak var updateButton: UIButton!
+    var imageUrl: String!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +24,7 @@ class UpdateProfil: BaseViewController {
         setupUI()
         imageGesture()
         viewWillAppear(true)
+        backImageGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +47,7 @@ class UpdateProfil: BaseViewController {
         }
     }
     
+  
     @IBAction func updateButtonCliced(_ sender: UIButton) {
         let storage = Storage.storage()
         let storageReferance = storage.reference()
@@ -58,10 +61,28 @@ class UpdateProfil: BaseViewController {
                 }else{
                     imageReferance.downloadURL { (url, error) in
                         let imageurl = url?.absoluteString
+                        self.imageUrl = imageurl
+                        
+                    }
+                }
+            }
+            
+        }else{
+         
+        }
+        if let dataBackImage = self.backImage.image?.jpegData(compressionQuality: 0.5){
+            let uuid = UUID().uuidString
+            let imageReferance = mediaFolder.child("\(uuid).jpg")
+            imageReferance.putData(dataBackImage, metadata: nil){(metadata, error) in
+                if error != nil {
+                    self.makeAlert(textInput: "ERROR", messageInput: error?.localizedDescription ?? "Error")
+                }else{
+                    imageReferance.downloadURL { (url, error) in
+                        let backImageUrl = url?.absoluteString
                         Network.updateUser(name: self.nameTextInput.text,
                                            userNmae: self.userNameInput.text,
-                                           profileImage: imageurl,
-                                           backImage: "", complition: { (result) in
+                                           profileImage: self.imageUrl,
+                                           backImage: backImageUrl, complition: { (result) in
                             if result{
                                 
                             }
@@ -70,13 +91,6 @@ class UpdateProfil: BaseViewController {
                         }
                     }
                 }
-            }
-            
-        }else{
-            Network.updateUser(name: self.nameTextInput.text, userNmae: self.userNameInput.text, complition: { (result) in
-                
-            }) { (error) in
-                self.makeAlert(textInput: "ERROR", messageInput: error.localizedDescription)
             }
         }
         
@@ -90,10 +104,18 @@ extension UpdateProfil: UIImagePickerControllerDelegate , UINavigationController
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
         profileImage.addGestureRecognizer(gestureRecognizer)
     }
+    
+    func backImageGesture(){
+        backImage.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(choosePicture))
+        backImage.addGestureRecognizer(gesture)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         profileImage.image = info[.originalImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
     }
+    
     @objc func choosePicture(){
 
          let picker = UIImagePickerController()

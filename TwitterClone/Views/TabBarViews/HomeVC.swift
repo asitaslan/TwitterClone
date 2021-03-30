@@ -62,10 +62,21 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
         let cell = tableViewHome.dequeueReusableCell(withIdentifier: "toHomeCellVC", for: indexPath) as! HomeCellVC
         cell.delegate = self
         cell.usernameLbl.text = postArray[indexPath.row].userNmae
-        cell.postViewLbl.text = postArray[indexPath.row].postText
-        cell.postImageView1.sd_setImage(with: URL(string: postArray[indexPath.row].postImageUrl))
         cell.profileImageCellView.sd_setImage(with: URL(string: postArray[indexPath.row].profileImageUrl))
         cell.nameSuenameLbl.text = postArray[indexPath.row].name
+        if postArray[indexPath.row].postText != "" {
+            cell.postViewLbl.isHidden = false
+            cell.postViewLbl.text = postArray[indexPath.row].postText
+        }else{
+            cell.postViewLbl.isHidden = true
+        }
+        if postArray[indexPath.row].postImageUrl != ""{
+            cell.postImageView1.isHidden = false
+            cell.postImageView1.sd_setImage(with: URL(string: postArray[indexPath.row].postImageUrl))
+        }else{
+            cell.postImageView1.isHidden = true
+        }
+        cell.postTimeLbl.isHidden = true
         return cell
     }
     

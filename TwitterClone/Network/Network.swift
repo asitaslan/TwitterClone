@@ -48,7 +48,8 @@ class Network {
                              "name": UserInfo.sharedUserInfo.Name,
                              "postText": text!,
                              "date":FieldValue.serverTimestamp(),
-                             "imageUrl": imageUrl!]
+                             "imageUrl": imageUrl!,
+                             "email" :UserInfo.sharedUserInfo.email]
             
         }else if imageUrl != "" && text == "" {
             userDictonary = ["profileImageUrl": UserInfo.sharedUserInfo.imageUrl,
@@ -56,7 +57,8 @@ class Network {
                              "name": UserInfo.sharedUserInfo.Name,
                              "date":FieldValue.serverTimestamp(),
                              "postText": "",
-                             "imageUrl": imageUrl!]
+                             "imageUrl": imageUrl!,
+                             "email" : UserInfo.sharedUserInfo.email]
             
         }else if imageUrl == "" && text != "" {
             userDictonary = ["profileImageUrl": UserInfo.sharedUserInfo.imageUrl,
@@ -64,7 +66,8 @@ class Network {
                              "name": UserInfo.sharedUserInfo.Name,
                              "postText": text!,
                              "date":FieldValue.serverTimestamp(),
-                             "imageUrl": ""]
+                             "imageUrl": "",
+                             "email" : UserInfo.sharedUserInfo.email]
         }
         firestore.collection("SharedPost").addDocument(data: userDictonary as [String : Any]) { (error) in
             if let error = error{
@@ -136,31 +139,35 @@ class Network {
                             snaphot?.documents.first?.reference.updateData(["imageUrl" : imageUrl])
                         }
                     }
-                    for document in snaphot!.documents{
-                        if let user = document.get("userNmae") as? String {
-                            firestoredatabase.collection("SharedPost").whereField("userNmae", isEqualTo: user).getDocuments { (snap, Error) in
-                                if Error != nil{
-                                    fail(Error!)
-                                }else{
-                                    if snap?.isEmpty != true && snap != nil{
-                                        if let name = name{
-                                            if name != ""{
-                                                snaphot!.documents.first?.reference.updateData(["name" : name])
-                                            }
-                                        }
-                                        if let username = userNmae{
-                                            if username != ""{
-                                              snaphot?.documents.first?.reference.updateData(["userNmae": username])
-                                            }
-                                            
-                                        }
-                                        if let imageUrl = profileImage{
-                                            if imageUrl != "" {
-                                                snaphot?.documents.first?.reference.updateData(["profileImageUrl" : imageUrl])
-                                            }
-                                        }
-                                    }
-                                }
+                    if let backImage = backImage{
+                        if backImage != "" {
+                            snaphot?.documents.first?.reference.updateData(["backImage" : backImage])
+                        }
+                    }
+                }
+            }
+        }
+    
+        firestoredatabase.collection("SharedPost").whereField("email", isEqualTo: Auth.auth().currentUser!.email!).getDocuments { (snaphot, error) in
+            if error != nil{
+                fail(error!)
+            }else{
+                if snaphot?.isEmpty != true && snaphot != nil {
+                    for document in snaphot!.documents {
+                        if let name = name {
+                            if name != ""{
+                                document.reference.updateData(["name" : name])
+                            }
+                        }
+                        if let username = userNmae{
+                            if userNmae != ""{
+                                document.reference.updateData(["userNmae" : username])
+                                
+                            }
+                        }
+                        if let profileImage = profileImage{
+                            if profileImage != ""{
+                                document.reference.updateData(["profileImageUrl" : profileImage])
                             }
                         }
                     }
@@ -168,7 +175,6 @@ class Network {
             }
         }
     }
-    
 }
     
 
